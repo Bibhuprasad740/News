@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:news/models/network_helper.dart';
+import 'package:news/resources/network_helper.dart';
 import 'package:news/screens/about_developer.dart';
 import 'package:news/screens/search_screen.dart';
 import 'package:news/screens/suiit_screen.dart';
@@ -19,10 +19,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool key = true;
-  String? searchString;
+  String searchString = 'Geo Politics';
   String? responseBody;
   List<Widget> newsCards = [];
-  void getResponse(String? value) async {
+  void getResponse(String value) async {
     responseBody = await NetworkHelper(searchString: value).response();
     if (responseBody != 'error') {
       List articles = jsonDecode(responseBody!)["articles"];

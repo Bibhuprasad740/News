@@ -6,15 +6,12 @@ DateTime date = DateTime.now();
 String today = date.toString().split(' ')[0];
 
 class NetworkHelper {
-  String dummySearchString = 'Finance';
-  String? searchString;
-  NetworkHelper({this.searchString}); // optional argument
+  // String defaultSearchString = 'World Affairs';
+  String searchString;
+  NetworkHelper({this.searchString = 'World Affairs'}); // optional argument
   Future<String> response() async {
-    Response response = searchString != null
-        ? await Dio().get('$baseUrl/everything?q=$searchString&apiKey=$apiKey')
-        : await Dio().get(
-            '$baseUrl/top-headlines?country=in&category=business&apiKey=$apiKey');
-    print(response.statusCode);
+    Response response =
+        await Dio().get('$baseUrl/everything?q=$searchString&apiKey=$apiKey');
     if (response.statusCode == 200) {
       return response.toString();
     } else {

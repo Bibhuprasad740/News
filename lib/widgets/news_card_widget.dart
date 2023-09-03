@@ -5,13 +5,13 @@ class NewsCard extends StatelessWidget {
   final int index;
   final Function onTap;
   final Map<String, dynamic> article;
-  NewsCard({
+  const NewsCard({
     Key? key,
     required this.article,
     required this.onTap,
     required this.index,
   }) : super(key: key);
-  String? imageUrl = '';
+  final String? imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +20,14 @@ class NewsCard extends StatelessWidget {
     DateTime now = DateTime.now();
     String publishTime = '';
     if (now.hour.toString() == pTimeHour) {
-      publishTime = (int.parse(now.minute.toString()) - int.parse(pTimeMinute))
-              .toString() +
-          ' minutes ago.';
+      publishTime =
+          '${int.parse(now.minute.toString()) - int.parse(pTimeMinute)} minutes ago.';
     } else if (int.parse(now.hour.toString()) < int.parse(pTimeHour)) {
-      publishTime = (int.parse(now.hour.toString()) + 24 - int.parse(pTimeHour))
-              .toString() +
-          ' Hours ago.';
+      publishTime =
+          '${int.parse(now.hour.toString()) + 24 - int.parse(pTimeHour)} Hours ago.';
     } else {
       publishTime =
-          (int.parse(now.hour.toString()) - int.parse(pTimeHour)).toString() +
-              ' Hours ago.';
+          '${int.parse(now.hour.toString()) - int.parse(pTimeHour)} Hours ago.';
     }
     var dHeight = MediaQuery.of(context).size.height;
     var dWidth = MediaQuery.of(context).size.width;
@@ -57,7 +54,7 @@ class NewsCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      index.toString() + '.',
+                      '$index.',
                       style: TextStyle(
                         fontSize: dWidth * 0.06,
                         fontFamily: 'Cormorant',
